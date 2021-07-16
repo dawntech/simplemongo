@@ -2,19 +2,13 @@ version: '3'
 services:
   mongodb:
     container_name: mongodatabase
-    image: mongo:3.5
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=login_here
-      - MONGO_INITDB_ROOT_PASSWORD=password_here
+    image: mongo
     volumes:
       - ./mongo_data:/data/db
-    restart: on-failure
     ports:
       - "27017:27017"
-    command: mongod --logpath=/dev/null
+    command: mongod --logpath=/dev/null --auth
 
 volumes:
-  # mongodbdata:
-  #   driver: local
   appdata:
     driver: local

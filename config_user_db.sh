@@ -1,7 +1,13 @@
 # docker exec -it mongodb bash
 
-mongo -u mongodatabse -p
+mongo -u mongodatabase -p
 
 use numen
 
-mongo -u zlabs -p <login>@<pw> --authenticationDatabase numen
+db.createUser(
+  {
+    user: "login",
+    pwd: "password",
+    roles: [ { role: "dbAdminAnyDatabase", db: "admin" } ]
+  }
+)
